@@ -1,15 +1,21 @@
 
-#include "CellularAutomaton.h"
 
 template <unsigned int numberOfLayers>
-void CellularAutomaton<numberOfLayers>::createAndConnectCells (std::vector<const HitDoublets*> doublets, int fourLayersSize, const TrackingRegion& region, const float thetaCut, const float phiCut)
+int CellularAutomaton<numberOfLayers>::test() {return 3;}
+
+template <unsigned int numberOfLayers>
+void CellularAutomaton<numberOfLayers>::createAndConnectCells (std::vector<const HitDoublets*> doublets, int fourLayersSize,
+// const TrackingRegion& region, 
+const float thetaCut, const float phiCut)
 {
   unsigned int cellId = 0;
   constexpr unsigned int numberOfLayerPairs =   numberOfLayers - 1;
-  float ptmin = region.ptMin();
-  float region_origin_x = region.origin().x();
-  float region_origin_y = region.origin().y();
-  float region_origin_radius = region.originRBound();
+
+  float ptmin =  0.1; //region.ptMin();
+  float region_origin_x = 0;//region.origin().x();
+  float region_origin_y = 0;//region.origin().y();
+  float region_origin_radius = 20; //region.originRBound();
+
   //vv first layer
   unsigned int layerPairId = 0;
   auto innerLayerId = layerPairId;

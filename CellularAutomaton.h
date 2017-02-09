@@ -13,11 +13,15 @@ public:
 
     }
 
-    void createAndConnectCells(std::vector<const HitDoublets*>, int, const TrackingRegion&, const float, const float);
+    void createAndConnectCells(std::vector<const HitDoublets*>, int, 
+    //const TrackingRegion&,
+     const float, const float);
     void evolve();
     void findNtuplets(std::vector<CACell::CAntuplet>&, const unsigned int);
+    int test ();
 
 
+    std::array<std::vector<CACell>, theNumberOfLayers> theFoundCellsPerLayer;
 
 private:
 
@@ -25,12 +29,12 @@ private:
 
     //for each hit in each layer, store the pointers of the Cells of which it is outerHit
     std::array<std::vector<std::vector<CACell*> >, theNumberOfLayers> isOuterHitOfCell;
-    std::array<std::vector<CACell>, theNumberOfLayers> theFoundCellsPerLayer;
 
     std::vector<CACell*> theRootCells;
     std::vector<std::vector<CACell*> > theNtuplets;
 
 };
 
+#include "CellularAutomaton.cc"
 
 #endif 

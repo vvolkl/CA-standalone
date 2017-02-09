@@ -37,26 +37,35 @@ class MyHit {
  MyPoint thePoint;
 
 };
+
+class Hits {
+public:
+
+};
+
 class HitDoublets {
 public:
-  HitDoublets(): testHit_inner(1,2,3), testHit_outer(3,4,5) { 
-    layers[1].push_back(testHit_outer);
-    layers[0].push_back(testHit_inner);
-    }
+  using Hit=MyHit;
   enum layer { inner=0, outer=1};
 
-  using Hit=MyHit;
+  HitDoublets(std::vector<Hit>& innerHits, std::vector<Hit>& outerHits): layers{{innerHits, outerHits}}{}
+
 
   Hit const & hit(int i, layer l) const { return testHit;}
-  float x(int i, layer l) const { return layers[l][i].x();}//testHit.x();}
+  float x(int i, layer l) const { return layers[l][i].x();}
   float y(int i, layer l) const { return layers[l][i].y();}
   float z(int i, layer l) const { return layers[l][i].z();}
   float r(int i, layer l) const { return layers[l][i].r();}
   float phi(int i, layer l) const { return layers[l][i].phi();}
+  void add(int innerHit, int outerHit) { indices.push_back(innerHit); indices.push_back(outerHit); } 
+  size_t size() const {return indices.size()/2;}
+  int innerHitId(int i) const {return indices[2*i];}
+  int outerHitId(int i) const {return indices[2*i+1];}
   std::array<std::vector<Hit>,2> layers;  
   Hit testHit_inner;
   Hit testHit_outer;
   Hit testHit;
+  std::vector<int> indices;
 
 };
 
@@ -72,5 +81,7 @@ private:
  
   MyPoint point;
 };
+
+typedef MyTrackingRegion TrackingRegion;
 
 #endif
