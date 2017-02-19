@@ -6,14 +6,14 @@
 //#include "RecoTracker/TkTrackingRegions/interface/TrackingRegion.h"
 //
 //#include "DataFormats/Math/interface/deltaPhi.h"
-#include "MyHits.h"
+//#include "MyHits.h"
 
 #include <cmath>
 #include <array>
 
 class CACell {
 public:
-    using Hit = MyHit;
+    using Hit = fcc::PositionedTrackHit;
     using CAntuplet = std::vector<CACell*>;
 
     CACell(const HitDoublets* doublets, int doubletId, const unsigned int cellId, const int innerHitId, const int outerHitId) :
